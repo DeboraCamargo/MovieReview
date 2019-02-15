@@ -39,10 +39,10 @@
         <input type="text" size="30" maxlength="130" id="email" name="email" value="<?php echo $email; ?>">
         <br>
         <label for="password">Password</label>
-        <input type="text" size="30" maxlength="130" id="password" name="password" value="<?php echo $password; ?>">
+        <input type="password" size="30" maxlength="130" id="password" name="password" value="<?php echo $password; ?>">
         <br>
         <label for="re_pswd">Re-Enter Password</label>
-        <input type="text" size="30" maxlength="130" id="re_pswd" name="re_pswd" value="<?php echo $re_pswd; ?>">
+        <input type="password" size="30" maxlength="130" id="re_pswd" name="re_pswd" value="<?php echo $re_pswd; ?>">
         <br>
         <label>
         <input type="checkbox" checked="checked" > Remember Me
