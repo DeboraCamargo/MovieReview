@@ -1,52 +1,103 @@
 DROP DATABASE IF EXISTS moviereviewdb;
-CREATE DATABASE moviereview CHARACTER SET utf8;
+CREATE DATABASE moviereviewdb CHARACTER SET utf8;
 
-DROP user IF EXISTS 'lamp2user'@'localhost';
-DROP user IF EXISTS 'lamp2user'@'127.0.0.1';
-DROP user IF EXISTS 'lamp2user'@'::1';
+DROP user IF EXISTS 'movieUser'@'localhost';
+DROP user IF EXISTS 'movieUser'@'127.0.0.1';
+DROP user IF EXISTS 'movieUser'@'::1';
 
-GRANT all privileges ON moviereviewdb.* TO 'lamp2user'@'localhost' IDENTIFIED BY 'Test123!';
-GRANT all privileges ON moviereviewdb.* TO 'lamp2user'@'127.0.0.1' IDENTIFIED BY 'Test123!';
-GRANT all privileges ON moviereviewdb.* TO 'lamp2user'@'::1' IDENTIFIED BY 'Test123!';
+GRANT all privileges ON moviereviewdb.* TO 'movieUser'@'localhost' IDENTIFIED BY 'Test123!';
+GRANT all privileges ON moviereviewdb.* TO 'movieUser'@'127.0.0.1' IDENTIFIED BY 'Test123!';
+GRANT all privileges ON moviereviewdb.* TO 'movieUser'@'::1' IDENTIFIED BY 'Test123!';
 
 
 USE moviereviewdb;
 
 DROP TABLE IF EXISTS `user`;
-DROP TABLE IF EXISTS `path_endPoints`;
-DROP TABLE IF EXISTS `path_midPoints`;
+DROP TABLE IF EXISTS `account`;
+DROP TABLE IF EXISTS `movie`;
+DROP TABLE IF EXISTS `movie_casting`;
+DROP TABLE IF EXISTS `actors`;
+DROP TABLE IF EXISTS `category`;
 
-
-CREATE TABLE `path_general`
+create table `account`
 (
-	`path_ID` int(11) not null auto_increment,
-	`path_name` varchar(100) not null unique,
-	`path_length` float(4,1) not null,
-	`description` varchar(255) not null,
-	`note` text(65534),
-	 primary key (`path_ID`)
+`account_id` int(4) not null auto_increment,
+`first_name` varchar(50) not null,
+`last_name` varchar(50) not null,
+`email` varchar(50) not null,
+primary key(`account_id`)
 );
 
-CREATE TABLE `path_endPoints`
+create table user
 (
-	`path_endpt_ID` int(11) not null auto_increment,
-	`path_ID` int(11) not null,
-	`dist_from_start` float(6,4) not null,
-	`grd_height` float(6,4) not null,
-	`atn_height` float(6,4) not null,
-	primary key(`path_endpt_ID`),
-	FOREIGN KEY(`path_ID`) REFERENCES path_general(`path_ID`)
+`user_id` int(4) not null auto_increment,
+`loginName` varchar(20) not null,
+`password` varchar(6) not null,
+`rememberMe` bit,
+`account_id` int(4) not null,
+ primary key(`user_id`),
+ 	FOREIGN KEY(`account_id`) REFERENCES account(`account_id`)
 );
 
-CREATE TABLE `path_midPoints`
-(
-	`path_midpt_ID` int(11) not null auto_increment,
-	`path_ID` int(11) not null,
-	`dist_from_start` float(6,4) not null,
-	`grd_height` float(6,4) not null,
-	`trn_type` varchar(50) not null,
-	`obstr_height` float(6,4) not null,
-	`obstr_type` varchar(50) not null,
-	primary key(`path_midpt_ID`),
-	FOREIGN KEY(`path_ID`) REFERENCES path_general(`path_ID`)
+
+create table category(
+`category_id` int(4) not null auto_increment,
+`category_title` varchar(50),
+  primary key(`category_id`)
 );
+
+create table movie
+(
+`movie_id` int(4) not null auto_increment,
+`title` varchar(200) not null,
+`genre` varchar(200),
+`release_year` year,
+`country`varchar(50),
+`producer`varchar(50),
+`runtime` time,
+`storyline` text(65534),
+`poster` BLOB,
+`plot_key_words` varchar(200),
+`available_language` varchar(100),
+`Director` varchar(255),
+`category_id` int(4) not null,
+primary key(`movie_id`),
+	FOREIGN KEY(`category_id`) REFERENCES category(`category_id`)
+
+);
+
+create table actors
+(
+`actors_id` int(4) not null auto_increment,
+`ActorName` varchar(100) not null,
+`ActorPicture` BLOB,
+`shortBio` varchar(100),
+  primary key(`actors_id`)
+);
+
+create table movie_casting
+(
+`movie_casting_id` int(4) not null auto_increment,
+`movie_id` int(4) not null,
+`actors_id` int(4) not null,
+  primary key(`movie_casting_id`),
+	FOREIGN KEY(`movie_id`) REFERENCES movie(`movie_id`),
+	FOREIGN KEY(`actors_id`) REFERENCES actors(`actors_id`)
+);
+
+
+create table review
+(
+`review_id` int(4) not null auto_increment,
+`account_id` int(4) not null,
+`movie_id` int(4) not null,
+`titleReview` varchar(50),
+`comment` varchar(255),
+`rating` int(1) not null,
+  primary key(`review_id`),
+	FOREIGN KEY(`account_id`) REFERENCES account(`account_id`),
+	FOREIGN KEY(`movie_id`) REFERENCES movie(`movie_id`)
+);
+
+
+
