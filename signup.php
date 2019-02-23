@@ -13,22 +13,26 @@
 	$error_msg = validate_fields();
 	if (count($error_msg) > 0){
 		display_error($error_msg);
-		form_1($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['re_pswd']);
+		form_1($_POST['user_name'],$_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['re_pswd']);
 	} else {
 		save_data();
 		display_success();
 	}
 } else {
-	form_1("", "", "", "", "");
+	form_1("", "", "", "", "","");
 } ?>
 
 </body>
 </html>
 
-<?php function form_1($first_name, $last_name, $email, $password, $re_pswd){ ?>
+<?php function form_1($user_name, $first_name, $last_name, $email, $password, $re_pswd){ ?>
 <div class ="container">
     <form method="POST" action="./index.php" id="form1">
     <h2> Create a Free Movie Review Account Today! </h2>
+	    
+		<label for="user_name">User Name</label>
+		<input type="text" size="30" maxlength="30" id="user_name" name="user_name" value="<?php echo $user_name; ?>">
+		<br>
 		<label for="first_name">First Name</label>
 		<input type="text" size="30" maxlength="30" id="first_name" name="first_name" value="<?php echo $first_name; ?>">
 		<br>
@@ -68,6 +72,20 @@
 			}
 		}
     }
+		
+	if (!isset($_POST['user_name'])){
+		$error_msg[] = "User Name field not defined";
+	} else if (isset($_POST['user_name'])){
+		$user_name = trim($_POST['user_name']);
+		if (empty($user_name)){
+			$error_msg[] = "The User name is empty";
+		} else {
+			if (strlen($user_name) >  100){
+              $error_msg[] = "The User Name field contains too many characters";
+		}
+    }
+}
+
 	
 	if (!isset($_POST['last_name'])){
 		$error_msg[] = "last Name field not defined";
