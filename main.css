@@ -14,6 +14,27 @@ border:3px solid #555;
 background-color:lightblue;
 }
 
+img{
+left:800px;
+width:45%;
+position:absolute;
+bottom:350px;
+}
+#user_name2{
+width:30%;
+display:block;
+}
+
+#email2{
+width:30%;
+display:block;
+}
+
+#password2{
+width:30%;
+display:block;
+}
+
 input[type=checkbox]{
 
 margin-bottom:15px;
@@ -41,7 +62,7 @@ padding:20px;
 
 h1{
  font-family: 'Merriweather', serif;
- font-size:37px;
+ font-size:40px;
  color:red;
 }
 
@@ -65,9 +86,21 @@ color:blue;
 
 }
 
+.cancelbtn2{
+
+width:30%;
+padding:4px;
+float:left;
+color:red;
+}
+
+.signInBtn{
+width:30%;
+padding:4px;
+float:left;
+color:blue;
+
 a{
 color:blue;
 text-decoration:none;
 }
-
-
