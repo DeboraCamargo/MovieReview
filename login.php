@@ -13,7 +13,7 @@
 	$error_msg = validate_fields();
 	if (count($error_msg) > 0){
 		display_error($error_msg);
-		form_1($_POST['user_name'], $_POST['email'], $_POST['password']);
+		form_2($_POST['user_name'], $_POST['email'], $_POST['password']);
 	} else {
 		save_data();
 		display_success();
@@ -27,7 +27,7 @@
 
 <?php function form_2($user_name, $email, $password){ ?>
 <div class ="container">
-    <form method="POST" action="./main.php" id="form1">
+    <form method="POST" action="./main.php" id="form2">
     <h2> Sign Into Your Movie Review Spot Account! </h2>
 	    <img src="movie.jpg" alt="Movie Spot Pic">
 	    
