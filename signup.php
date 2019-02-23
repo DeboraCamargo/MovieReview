@@ -27,7 +27,7 @@
 
 <?php function form_1($user_name, $first_name, $last_name, $email, $password, $re_pswd){ ?>
 <div class ="container">
-    <form method="POST" action="./index.php" id="form1">
+    <form method="POST" action="./main.php" id="form1">
     <h2> Create a Free Movie Review Account Today! </h2>
 	    
 		<label for="user_name">User Name</label>
