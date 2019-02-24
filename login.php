@@ -27,7 +27,7 @@
 
 <?php function form_2($user_name, $email, $password){ ?>
 <div class ="container">
-    <form method="POST" action="./main.php" id="form2">
+    <form method="POST" action="./mainpage.php" id="form2">
     <h2> Sign Into Your Movie Review Spot Account! </h2>
 	    <img src="movie.jpg" alt="Movie Spot Pic">
 	    
