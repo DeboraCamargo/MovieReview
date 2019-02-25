@@ -24,6 +24,9 @@ $moviesArray = array(
     <link href="main-page.css" rel="stylesheet" >
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -64,8 +67,12 @@ $moviesArray = array(
         </div>
 
         <div class="login">
-            <div><button>Login</button></div>
-
+            <div><button id="opener">Login</button></div>
+        </div>
+        <div id="dialog">
+            <p>Already a member?</p>
+            <button class="opt">Yes, take me to login page</button><br>
+            <button class="opt">No, I need to subscribe</button>
         </div>
 
     </header>
@@ -115,5 +122,27 @@ $moviesArray = array(
     </footer>
 
 </div>
+<script>
+    $(function() {
+        $( "#dialog" ).dialog({
+            autoOpen: false,
+            show: {
+                effect: "blind",
+                duration: 1000
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            },
+            title: "Membership"
+        });
+
+        $( "#opener" ).click(function() {
+           $( "#dialog" ).dialog( "open" );
+        });
+    });
+</script>
+
 </body>
 </html>
+
