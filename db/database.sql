@@ -35,7 +35,7 @@ create table user
 `password` varchar(6) not null,
 `rememberMe` bit,
 `account_id` int(4) not null,
- 'email' varchar (20) not null,
+ 'email' varchar(20) not null,
  primary key(`user_id`),
  	FOREIGN KEY(`account_id`) REFERENCES account(`account_id`)
 );
