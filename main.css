@@ -15,11 +15,12 @@ background-color:lightblue;
 }
 
 img{
-left:800px;
+left:700px;
 width:45%;
 position:absolute;
-bottom:350px;
+bottom:400px;
 }
+
 #user_name2{
 width:30%;
 display:block;
