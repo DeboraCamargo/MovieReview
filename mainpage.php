@@ -38,9 +38,9 @@ $moviesArray = array(
 
         <div class="search">
             <label for="search">Search</label>
-            <input id="search" type="search">
+            <input id="search" type="search"  class="loginbtn">
             <label for="search-by">Search by</label>
-            <select id="search-by">
+            <select id="search-by"  class="loginbtn">
                 <option value="TV">All</option>
                 <option value="TV">TV episodes</option>
                 <option value="Movie">Movie</option>
@@ -67,12 +67,12 @@ $moviesArray = array(
         </div>
 
         <div class="login">
-            <div><button id="opener">Login</button></div>
+            <div><button id="opener" class="loginbtn">Login</button></div>
         </div>
         <div id="dialog">
             <p>Already a member?</p>
-            <button class="opt">Yes, take me to login page</button><br>
-            <button class="opt">No, I need to subscribe</button>
+            <button id="goLogin" class="opt">Yes, take me to login page</button>
+            <button id="goSubscribe" class="opt">No, I need to subscribe</button>
         </div>
 
     </header>
@@ -140,9 +140,16 @@ $moviesArray = array(
         $( "#opener" ).click(function() {
            $( "#dialog" ).dialog( "open" );
         });
+
+        $( "#goLogin" ).click(function() {
+            window.location.href = "login.php";
+        });
+
+        $( "#goSubscribe" ).click(function() {
+            window.location.href = "signup.php";
+        });
     });
 </script>
-
 </body>
 </html>
 
