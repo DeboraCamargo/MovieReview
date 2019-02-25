@@ -6,7 +6,16 @@
  * Time: 1:09 PM
  */
 
-require "lib/omdbapi.php";
+require "lib/themoviedb.php";
+
+$themoviedb = new TheMovieDB();
+$latestMovieIds = array("tt2386490", "tt0437086", "tt3513498", "tt2452244", "tt8155288");
+$moviesArray = array(
+    "oculus" => $themoviedb->getMovieById(157547),
+    "Ant-man-and-the-Wasp" => $themoviedb->getMovieById(363088),
+    "BlackPanther" => $themoviedb->getMovieById(284054),
+    "rocketman" => $themoviedb->getMovieById(504608)
+);
 ?>
 <html lang="en">
 <head>
@@ -24,18 +33,21 @@ require "lib/omdbapi.php";
         </div>
 
 
-            <div class="search">
-                <input type="search">
-                <select>
-                    <option value="TV">All</option>
-                    <option value="TV">TV episodes</option>
-                    <option value="Movie">Movie</option>
-                    <option value="Casting">Casting</option>
-                </select>
-                <a>
-                    <i class="fas fa-search"></i>
-                </a>
-            </div>
+        <div class="search">
+            <label for="search">Search</label>
+            <input id="search" type="search">
+            <label for="search-by">Search by</label>
+            <select id="search-by">
+                <option value="TV">All</option>
+                <option value="TV">TV episodes</option>
+                <option value="Movie">Movie</option>
+                <option value="Casting">Casting</option>
+            </select>
+
+            <a>
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
         <nav class="menu">
             <ul>
                 <li><a>Movies</a></li>
@@ -62,84 +74,45 @@ require "lib/omdbapi.php";
         <h2>Movies of the week
         </h2>
 
-        <nav>
-            <ul>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-                <li><a href="#"> Movie </a></li>
-            </ul>
-        </nav>
-
-        <content>
+        <div>
             <?php
-            //$omdb = new OMDb();
-            //
-            //$movies = $omdb->getData();
-            //
-            //echo $movies->{"Title"};
 
+            foreach ($latestMovieIds as $movieId) {
+                $movie = $themoviedb->findMovieByIMDBId($movieId);
+                ?>
+                <div class="side-movie">
+                    <img alt="<?php echo $movie->{"title"}?>"
+                         src="<?php echo $themoviedb->getPosterUrl($movie->{"poster_path"})?>" />
+                    <div><?php echo $movie->{"title"}?></div>
+                    <div>Release date: <?php echo $movie->{"release_date"}?></div>
+                </div>
+                <?php
+            }
             ?>
-        </content>
+        </div>
     </aside>
     <article>
-        <section>
-            <h2>Author's review on Oculus</h2>
-           <a href="#"><img src="img/oculus.jpg" alt="movie oculus" height="250"></a>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc mollis, nulla non elementum tincidunt, felis ligula
-                sodales lectus, sit amet dignissim quam massa sit amet lorem. Aenean lorem risus, tempus nec, gravida eu, semper
-                sed, ipsum. Donec risus. Pellentesque sollicitudin sapien ut neque scelerisque blandit. Praesent metus. Mauris
-                pulvinar mattis justo. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer dictum vehicula orci.
-                Integer sed velit. Nunc in sem sit amet ligula scelerisque dapibus. Nullam commodo odio vel enim. </p>
-        </section>
-        <section>
-            <h2>Authors review on the Ant man and the wasp</h2>
-            <a href="#"><img src="img/Ant-man-and-the-Wasp.jpg" alt="antman" height="250"></a>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc mollis, nulla non elementum tincidunt, felis ligula
-                sodales lectus, sit amet dignissim quam massa sit amet lorem. Aenean lorem risus, tempus nec, gravida eu, semper
-                sed, ipsum. Donec risus. Pellentesque sollicitudin sapien ut neque scelerisque blandit. Praesent metus. Mauris
-                pulvinar mattis justo. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer dictum vehicula orci.
-                Integer sed velit. Nunc in sem sit amet ligula scelerisque dapibus. Nullam commodo odio vel enim. </p>
-        </section>
-
-        <section>
-            <h2>Authors review on Black Panther</h2>
-            <a href="#"> <img src="img/BlackPanther.jpg" alt="blackpanther" height="250"></a>
-
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc mollis, nulla non elementum tincidunt, felis ligula
-                sodales lectus, sit amet dignissim quam massa sit amet lorem. Aenean lorem risus, tempus nec, gravida eu, semper
-                sed, ipsum. Donec risus. Pellentesque sollicitudin sapien ut neque scelerisque blandit. Praesent metus. Mauris
-                pulvinar mattis justo. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer dictum vehicula orci.
-                Integer sed velit. Nunc in sem sit amet ligula scelerisque dapibus. Nullam commodo odio vel enim. </p>
-        </section>
-
-        <section>
-            <h2>Authors review on Rocketman</h2>
-            <a href="#"><img src="img/rocketman.jpg" alt="rocketman" height="250"></a>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc mollis, nulla non elementum tincidunt, felis ligula
-                sodales lectus, sit amet dignissim quam massa sit amet lorem. Aenean lorem risus, tempus nec, gravida eu, semper
-                sed, ipsum. Donec risus. Pellentesque sollicitudin sapien ut neque scelerisque blandit. Praesent metus. Mauris
-                pulvinar mattis justo. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer dictum vehicula orci.
-                Integer sed velit. Nunc in sem sit amet ligula scelerisque dapibus. Nullam commodo odio vel enim. </p>
-        </section>
-
+        <?php
+        foreach ($moviesArray as $key => $movie) {
+            ?>
+            <section>
+                <h2>Author's review on <?php echo $movie->title ?></h2>
+                <div style="text-align: center;">
+                    <a href="#"><img src="img/<?php echo $key ?>.jpg" alt="movie <?php echo $movie->title ?>" height="250"></a>
+                </div>
+                <sub><i>"<?php echo $movie->tagline ?>"</i></sub>
+                <p>Overview: <?php echo $movie->overview ?> </p>
+                <span>Rating: <?php echo $movie->vote_average == 0? "-" : $movie->vote_average ?>/10</span>
+            </section>
+            <?php
+        }
+        ?>
     </article>
 
     <footer>
         <p>&copy; Copyright 2019 - Movie IMDbest</p>
 
     </footer>
-
-
 
 </div>
 </body>

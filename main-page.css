@@ -94,8 +94,23 @@ aside{
  grid-area: aside;
 }
 
+.side-movie {
+ padding: 0 20px 20px;
+
+}
+
+.side-movie > img {
+ width: 100%;
+ margin-bottom: 5px;
+}
+
+
 
 footer{
  grid-area: footer;
  text-align: center;
+}
+
+label[for="search"], label[for="search-by"] {
+ display:none;
 }
