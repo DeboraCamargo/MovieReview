@@ -25,19 +25,19 @@ create table `account`
 `first_name` varchar(50) not null,
 `last_name` varchar(50) not null,
 `email` varchar(50) not null,
+'password' varchar(50) not null,
 primary key(`account_id`)
 );
 
 create table user
 (
-`user_id` int(4) not null auto_increment,
-`loginName` varchar(20) not null,
-`password` varchar(6) not null,
-`rememberMe` bit,
-`account_id` int(4) not null,
- 'email' varchar(20) not null,
- primary key(`user_id`),
- 	FOREIGN KEY(`account_id`) REFERENCES account(`account_id`)
+user_id int(4) not null auto_increment,
+loginName varchar(20) not null,
+password varchar(50) not null,
+rememberMe bit,
+account_id int(4),
+email varchar(50) not null,
+primary key(user_id)
 );
 
 
