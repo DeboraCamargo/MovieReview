@@ -16,7 +16,6 @@
 		form_1($_POST['user_name'],$_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['re_pswd']);
 	} else {
 		save_data();
-		display_success();
 	}
 } else {
 	form_1("", "", "", "", "","");
@@ -27,7 +26,7 @@
 
 <?php function form_1($user_name, $first_name, $last_name, $email, $password, $re_pswd){ ?>
 <div class ="container">
-    <form method="POST" action="./mainpage.php" id="form1">
+    <form method="POST" action=" " id="form1">
     <h2> Create a Free Movie Review Account Today! </h2>
 	    
 		<label for="user_name">User Name</label>
@@ -53,7 +52,7 @@
         </lable>
         <p>By creating an account you agree  to our <a href="#" style="color:dodgerblue">Terms & Privacy</a></p>
         <button type="button" class="cancelbtn">Cancel</button>
-        <input type="submit" class="signupbtn" value="Sign Up!" />
+        <input type="submit"  class="signupbtn" value="Sign Up!" />
 	</form>
 	</div>
 <?php } ?> 
@@ -141,14 +140,25 @@
 	return $error_msg;
 } ?>
 
-<?php function display_error($error_msg){
-	echo "<p>\n";
-	foreach($error_msg as $v){
-		echo $v."<br>\n";
-	}
-	echo "</p>\n";
-} 
-?>
 
+<?php
+function save_data(){
+$db_conn = new mysqli('localhost', 'movieUser', 'Test123!', 'moviereviewdb');
+if ($db_conn->connect_errno) {
+    printf ("Could not connect to database server".$db_host."\n Error: ".$db_conn->connect_errno ."\n Report: ".$db_conn->connect_error."\n");
+}
+$first_name = $db_conn->real_escape_string($_POST['first_name']);
+$last_name = $db_conn->real_escape_string($_POST['last_name']);
+$email = $db_conn->real_escape_string($_POST['email']);
+$password = $db_conn->real_escape_string($_POST['password']);
+
+$qry = "INSERT INTO account (first_name, last_name, email, password) VALUES ('".$first_name."','".$last_name."','".$email."', MD5('".$password."'));";
+
+$db_conn->query($qry);
+$db_conn->close();
+
+}
+
+?>
 	
 
