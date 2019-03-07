@@ -151,8 +151,9 @@ $first_name = $db_conn->real_escape_string($_POST['first_name']);
 $last_name = $db_conn->real_escape_string($_POST['last_name']);
 $email = $db_conn->real_escape_string($_POST['email']);
 $password = $db_conn->real_escape_string($_POST['password']);
+$user_name = $db_conn->real_escape_string($_POST['user_name']);
 
-$qry = "INSERT INTO account (first_name, last_name, email, password) VALUES ('".$first_name."','".$last_name."','".$email."', MD5('".$password."'));";
+$qry = "INSERT INTO account (first_name, last_name, email, password, user_name) VALUES ('".$first_name."','".$last_name."','".$email."', MD5('".$password."'), '".$user_name."');";
 
 $db_conn->query($qry);
 $db_conn->close();
@@ -161,4 +162,3 @@ $db_conn->close();
 
 ?>
 	
-
