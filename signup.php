@@ -157,7 +157,7 @@ $qry = "INSERT INTO account (first_name, last_name, email, password, user_name) 
 
 $db_conn->query($qry);
 $db_conn->close();
-
+header('Location: mainpage.php');
 }
 
 ?>
