@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+
+?>
 <html>
 <head>
 	<title>Login </title>
@@ -45,7 +47,7 @@
         <br>
         <button type="button" class="cancelbtn2">Cancel</button>
         <br><br>
-        <input type="submit" class="signInBtn" value="Sign In!" />
+        <input type="submit" class="signInBtn" value="Sign In!" href="profile.php" />
 	</form>
 	</div>
 <?php } ?> 
@@ -109,10 +111,9 @@ $password = $db_conn->real_escape_string($_POST['password']);
 $qry = "INSERT INTO user (loginName, password, email ) VALUES ('".$user_name."', MD5('".$password."'), '".$email."');";
 
 
-
 $db_conn->query($qry);
 $db_conn->close();
-
+header("location: profile.php");
 }
 
 ?>
