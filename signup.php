@@ -201,8 +201,14 @@ $email = $db_conn->real_escape_string($_POST['email']);
 $password = $db_conn->real_escape_string($_POST['password']);
 $user_name = $db_conn->real_escape_string($_POST['user_name']);
 
-$qry = "INSERT INTO account (first_name, last_name, email, password, user_name) VALUES ('".$first_name."','".$last_name."','".$email."', MD5('".$password."'), '".$user_name."');";
+ $qry = mysqli_query ($db_conn, "SELECT * FROM account WHERE first_name='".$first_name."' AND last_name='".$last_name."' AND email='".$email."' AND user_name = '".$user_name."'");
+        if(mysqli_num_rows($qry) > 0){
 
+            echo "User Name and E-mail already exists";
+        }else{
+
+$qry = "INSERT INTO account (first_name, last_name, email, password, user_name) VALUES ('".$first_name."','".$last_name."','".$email."', MD5('".$password."'), '".$user_name."');";
+}
 $db_conn->query($qry);
 $db_conn->close();
 header('Location: mainpage.php');
