@@ -1,3 +1,31 @@
+header, article, nav, section, footer {display:block;}
+*, *:before, *:after {
+ box-sizing: border-box;
+}
+
+:root{
+ --primary-text:#c1b4a2;
+ --primary-font: 'ZCOOL QingKe HuangYou', cursive;
+}
+
+body{
+ margin: 0;
+ padding: 0;
+ background-image: url("../img/movie-backg.jpg");
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-attachment: fixed;
+ color: var(--primary-text);
+ font-family: var(--primary-font);
+
+}
+
+.container{
+ width:100%;
+ margin: 100px auto 50px;
+ background-color: #41413D;
+}
+
 input[type=text], input[type=password] {
 width:100%;
 padding:12px 20px;

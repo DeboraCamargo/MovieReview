@@ -2,12 +2,14 @@
 <html>
 <head>
 	<title>Sign Up </title>
-	<link href="main.css" rel="stylesheet" > 
+	<link href="css/main.css" rel="stylesheet" >
 	<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet"> 
 	<link href="https://fonts.googleapis.com/css?family=Merriweather|Muli" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
-<h1>The Movie Review Spot</h1>
+<!--<h1>The Movie Review Spot</h1>-->
 
 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$error_msg = validate_fields();
@@ -29,7 +31,7 @@
 <div class ="container">
     <form method="POST" action="./mainpage.php" id="form1">
     <h2> Create a Free Movie Review Account Today! </h2>
-	    
+	<!--
 		<label for="user_name">User Name</label>
 		<input type="text" size="30" maxlength="30" id="user_name" name="user_name" value="<?php echo $user_name; ?>">
 		<br>
@@ -54,7 +56,53 @@
         <p>By creating an account you agree  to our <a href="#" style="color:dodgerblue">Terms & Privacy</a></p>
         <button type="button" class="cancelbtn">Cancel</button>
         <input type="submit" class="signupbtn" value="Sign Up!" />
-	</form>
+        -->
+
+
+        <div class="form-group">
+            <label for="user_name">User Name</label>
+            <input type="text" class="form-control" maxlength="30" id="user_name" placeholder="User Name" name="user_name" value="<?php echo $user_name; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control" maxlength="130" id="first_name" placeholder="First Name" name="first_name" value="<?php echo $first_name; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" maxlength="130" id="last_name" placeholder="Last Name" name="last_name" value="<?php echo $last_name; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control"  maxlength="130" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="<?php echo $email; ?>">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" maxlength="130" id="password" placeholder="Password" name="password" value="<?php echo $password; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="re_pswd">Password</label>
+            <input type="password" class="form-control" maxlength="130" id="re_pswd" placeholder="Password" name="re_pswd" value="<?php echo $re_pswd; ?>">
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" checked="checked">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        </div>
+
+        <p>By creating an account you agree  to our <a href="#" style="color:dodgerblue">Terms & Privacy</a></p>
+
+
+        <button type="submit" class="btn btn-primary" href="main.php">Sign In</button>
+        <button type="submit" class="btn btn-primary">Cancel</button>
+
+
+    </form>
 	</div>
 <?php } ?> 
 

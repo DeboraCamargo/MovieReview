@@ -25,7 +25,7 @@ create table `account`
 `first_name` varchar(50) not null,
 `last_name` varchar(50) not null,
 `email` varchar(50) not null,
-primary key(`account_id`)
+ primary key(`account_id`)
 );
 
 create table user
@@ -35,7 +35,7 @@ create table user
 `password` varchar(6) not null,
 `rememberMe` bit,
 `account_id` int(4) not null,
- 'email' varchar(20) not null,
+ `email_user` varchar(20) not null,
  primary key(`user_id`),
  	FOREIGN KEY(`account_id`) REFERENCES account(`account_id`)
 );

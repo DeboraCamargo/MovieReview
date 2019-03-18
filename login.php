@@ -2,13 +2,12 @@
 <html>
 <head>
 	<title>Login </title>
-	<link href="main.css" rel="stylesheet" > 
-	<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet"> 
+    <link href="css/main.css" rel="stylesheet" >
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Merriweather|Muli" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<h1>The Movie Review Spot</h1>
-
 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$error_msg = validate_fields();
 	if (count($error_msg) > 0){
@@ -28,17 +27,19 @@
 <?php function form_2($user_name, $email, $password){ ?>
 <div class ="container">
     <form method="POST" action="./mainpage.php" id="form2">
-    <h2> Sign Into Your Movie Review Spot Account! </h2>
-	    <img src="movie.jpg" alt="Movie Spot Pic">
+        <!--<h1>The Movie Review Spot</h1>-->
+
+        <h2> Sign Into Your Movie Review Spot Account! </h2>
+	    <!--<img src="movie.jpg" alt="Movie Spot Pic">
 	    
 		<label for="user_name">User Name:</label>
-		<input type="text" size="30" maxlength="30" id="user_name2" name="user_name" value="<?php echo $user_name; ?>">
+		<input type="text" size="30" maxlength="30" id="user_name2" name="user_name" value="<?php //echo $user_name; ?>">
 		<br>
         <label for="email">E-Mail:</label>
-        <input type="text" size="30" maxlength="130" id="email2" name="email" value="<?php echo $email; ?>">
+        <input type="text" size="30" maxlength="130" id="email2" name="email" value="<?php //echo $email; ?>">
         <br>
         <label for="password">Password:</label>
-        <input type="password" size="30" maxlength="130" id="password2" name="password" value="<?php echo $password; ?>">
+        <input type="password" size="30" maxlength="130" id="password2" name="password" value="<?php// echo $password; ?>">
         <br>
         <label>
         <input type="checkbox" checked="checked" > Remember Me
@@ -46,8 +47,33 @@
         <br>
         <button type="button" class="cancelbtn2">Cancel</button>
         <br><br>
-        <input type="submit" class="signInBtn" value="Sign In!" href="main.php" />
+        <input type="submit" class="signInBtn" value="Sign In!" href="main.php" />-->
+
+        <div class="form-group">
+            <label for="user_name2">User Name</label>
+            <input type="text" class="form-control" maxlength="30" id="user_name2" placeholder="User" name="user_name" value="<?php echo $user_name; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password2" placeholder="Password" name="password" value="<?php echo $password; ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control"  maxlength="130" id="email2" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="<?php echo $email; ?>">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" checked="checked">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        </div>
+        <button type="submit" class="btn btn-primary" href="main.php">Sign In</button>
+        <button type="submit" class="btn btn-primary">Cancel</button>
+
 	</form>
+
 	</div>
 <?php } ?> 
 
