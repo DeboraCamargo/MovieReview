@@ -32,22 +32,22 @@
     <h2> Create a Free Movie Review Account Today! </h2>
 	<!--
 		<label for="user_name">User Name</label>
-		<input type="text" size="30" maxlength="30" id="user_name" name="user_name" value="<?php echo $user_name; ?>">
+		<input type="text" size="30" maxlength="30" id="user_name" name="user_name" value="<?php //echo $user_name; ?>">
 		<br>
 		<label for="first_name">First Name</label>
-		<input type="text" size="30" maxlength="30" id="first_name" name="first_name" value="<?php echo $first_name; ?>">
+		<input type="text" size="30" maxlength="30" id="first_name" name="first_name" value="<?php //echo $first_name; ?>">
 		<br>
 		<label for="last_name">Last Name</label>
-		<input type="text" size="30" maxlength="130" id="last_name" name="last_name" value="<?php echo $last_name; ?>">
+		<input type="text" size="30" maxlength="130" id="last_name" name="last_name" value="<?php //echo $last_name; ?>">
         <br>
         <label for="email">E-Mail</label>
-        <input type="text" size="30" maxlength="130" id="email" name="email" value="<?php echo $email; ?>">
+        <input type="text" size="30" maxlength="130" id="email" name="email" value="<?php //echo $email; ?>">
         <br>
         <label for="password">Password</label>
-        <input type="password" size="30" maxlength="130" id="password" name="password" value="<?php echo $password; ?>">
+        <input type="password" size="30" maxlength="130" id="password" name="password" value="<?php //echo $password; ?>">
         <br>
         <label for="re_pswd">Re-Enter Password</label>
-        <input type="password" size="30" maxlength="130" id="re_pswd" name="re_pswd" value="<?php echo $re_pswd; ?>">
+        <input type="password" size="30" maxlength="130" id="re_pswd" name="re_pswd" value="<?php //echo $re_pswd; ?>">
         <br>
         <label>
         <input type="checkbox" checked="checked" > Remember Me
