@@ -53,9 +53,14 @@ $moviesArray = array(
         </div>
         <nav class="menu">
             <ul>
-                <li><a>Movies</a></li>
+                <li id="goMovies"><a>Movies</a></li>
                 <li><a>TV Shows</a></li>
                 <li><a>Reviews</a></li>
+                <li><a>Help us to Improve</a></li>
+                <li><a>Cinemas near me</a></li>
+
+
+
             </ul>
         </nav>
         <div class="header-links">
@@ -147,6 +152,9 @@ $moviesArray = array(
 
         $( "#goSubscribe" ).click(function() {
             window.location.href = "signup.php";
+        });
+        $( "#goMovies" ).click(function() {
+            window.location.href = "movie.php";
         });
     });
 </script>
