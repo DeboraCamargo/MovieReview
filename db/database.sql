@@ -25,7 +25,9 @@ create table `account`
 `first_name` varchar(50) not null,
 `last_name` varchar(50) not null,
 `email` varchar(50) not null,
- primary key(`account_id`)
+'password' varchar(50) not null,
+user_name varchar(50) not null,
+primary key(`account_id`)
 );
 
 create table user
@@ -99,6 +101,5 @@ create table review
 	FOREIGN KEY(`account_id`) REFERENCES account(`account_id`),
 	FOREIGN KEY(`movie_id`) REFERENCES movie(`movie_id`)
 );
-
 
 

@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+
+?>
 <html>
 <head>
 	<title>Login </title>
@@ -12,13 +14,12 @@
 	$error_msg = validate_fields();
 	if (count($error_msg) > 0){
 		display_error($error_msg);
-		form_2($_POST['user_name'], $_POST['email'], $_POST['password']);
+		form_2($_POST['user_name'], $_POST['email'], $_POST['password'], $_POST['remember']);
 	} else {
 		save_data();
-		display_success();
 	}
 } else {
-	form_2("", "", "");
+	form_2("", "", "", "");
 } ?>
 
 </body>
@@ -26,12 +27,9 @@
 
 <?php function form_2($user_name, $email, $password){ ?>
 <div class ="container">
-    <form method="POST" action="./mainpage.php" id="form2">
-        <!--<h1>The Movie Review Spot</h1>-->
-
-        <h2> Sign Into Your Movie Review Spot Account! </h2>
-	    <!--<img src="movie.jpg" alt="Movie Spot Pic">
-	    
+    <form method="POST" action="" id="form2">
+    <h2> Sign Into Your Movie Review Spot Account! </h2>
+	    <!--
 		<label for="user_name">User Name:</label>
 		<input type="text" size="30" maxlength="30" id="user_name2" name="user_name" value="<?php //echo $user_name; ?>">
 		<br>
@@ -42,7 +40,8 @@
         <input type="password" size="30" maxlength="130" id="password2" name="password" value="<?php// echo $password; ?>">
         <br>
         <label>
-        <input type="checkbox" checked="checked" > Remember Me
+	<input type="hidden" name="remember" value="no">
+        <input type="checkbox"  name="remember" value="yes" > Remember Me
         </lable>
         <br>
         <button type="button" class="cancelbtn2">Cancel</button>
@@ -122,11 +121,26 @@
 	return $error_msg;
 } ?>
 
-<?php function display_error($error_msg){
-	echo "<p>\n";
-	foreach($error_msg as $v){
-		echo $v."<br>\n";
-	}
-	echo "</p>\n";
-} 
+
+<?php
+function save_data(){
+$db_conn = new mysqli('localhost', 'movieUser', 'Test123!', 'moviereviewdb');
+if ($db_conn->connect_errno) {
+    printf ("Could not connect to database server".$db_host."\n Error: ".$db_conn->connect_errno ."\n Report: ".$db_conn->connect_error."\n");
+}
+$user_name = $db_conn->real_escape_string($_POST['user_name']);
+$email = $db_conn->real_escape_string($_POST['email']);
+$password = $db_conn->real_escape_string($_POST['password']);
+
+$qry = "INSERT INTO user (loginName, password, email ) VALUES ('".$user_name."', MD5('".$password."'), '".$email."');";
+
+
+$db_conn->query($qry);
+$db_conn->close();
+header("location: profile.php");
+}
+
 ?>
+	
+
+	
